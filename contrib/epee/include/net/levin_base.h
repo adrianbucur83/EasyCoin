@@ -31,7 +31,7 @@
 
 #include "net_utils_base.h"
 
-#define LEVIN_SIGNATURE  0x1111010101012101DD  //Bender's nightmare
+#define LEVIN_SIGNATURE  0x0101010101012000LL  //Bender's nightmare
 
 namespace epee
 {
