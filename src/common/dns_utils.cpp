@@ -45,11 +45,8 @@ namespace bf = boost::filesystem;
 
 static const char *DEFAULT_DNS_PUBLIC_ADDR[] =
 {
-  "194.150.168.168",    // CCC (Germany)
-  "81.3.27.54",         // Lightning Wire Labs (Germany)
-  "31.3.135.232",       // OpenNIC (Switzerland)
-  "80.67.169.40",       // FDN (France)
-  "209.58.179.186",     // Cyberghost (Singapore)
+  "188.213.48.112",    // CCC (Germany)
+  "80.211.133.201",         // Lightning Wire Labs (Germany)
 };
 
 static boost::mutex instance_lock;
@@ -465,7 +462,7 @@ bool load_txt_records_from_dns(std::vector<std::string> &good_records, const std
   for (size_t n = 0; n < dns_urls.size(); ++n)
   {
     threads[n] = boost::thread([n, dns_urls, &records, &avail, &valid](){
-      records[n] = tools::DNSResolver::instance().get_txt_record(dns_urls[n], avail[n], valid[n]); 
+      records[n] = tools::DNSResolver::instance().get_txt_record(dns_urls[n], avail[n], valid[n]);
     });
   }
   for (size_t n = 0; n < dns_urls.size(); ++n)
@@ -527,7 +524,7 @@ bool load_txt_records_from_dns(std::vector<std::string> &good_records, const std
 
   if (good_records_index < 0)
   {
-    LOG_PRINT_L0("WARNING: no two MoneroPulse DNS checkpoint records matched");
+    LOG_PRINT_L0("WARNING: no two Easycoin DNS checkpoint records matched");
     return false;
   }
 

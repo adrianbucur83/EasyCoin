@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2018, The Monero Project
-// 
+//
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without modification, are
@@ -79,6 +79,7 @@ public:
     const auto stagenet = command_line::get_arg(vm, cryptonote::arg_stagenet_on);
     const auto restricted = command_line::get_arg(vm, cryptonote::core_rpc_server::arg_restricted_rpc);
     const auto main_rpc_port = command_line::get_arg(vm, cryptonote::core_rpc_server::arg_rpc_bind_port);
+    const command_line::arg_descriptor<bool>        arg_print_genesis_tx = { "print-genesis-tx", "Prints genesis' block tx hex to insert it to config and exits" };
     rpcs.emplace_back(new t_rpc{vm, core, p2p, restricted, testnet ? cryptonote::TESTNET : stagenet ? cryptonote::STAGENET : cryptonote::MAINNET, main_rpc_port, "core"});
 
     auto restricted_rpc_port_arg = cryptonote::core_rpc_server::arg_rpc_restricted_bind_port;
@@ -89,6 +90,40 @@ public:
     }
   }
 };
+
+void print_genesis_tx_hex() {
+  Logging::ConsoleLogger logger;
+  CryptoNote::Transaction tx = CryptoNote::CurrencyBuilder(logger).generateGenesisTransaction();
+  CryptoNote::BinaryArray txb = CryptoNote::toBinaryArray(tx);
+  std::string tx_hex = Common::toHex(txb);
+
+  std::cout << "Insert this line into your coin configuration file as is: " << std::endl;
+  std::cout << "const char GENESIS_COINBASE_TX_HEX[] = \"" << tx_hex << "\";" << std::endl;
+
+  return;
+}
+CryptoNote::CurrencyBuilder currencyBuilder(logManager);
+currencyBuilder.testnet(testnet_mode);
+
+try {
+  currencyBuilder.currency();
+} catch (std::exception&) {
+  std::cout << "GENESIS_COINBASE_TX_HEX constant has an incorrect value. Please launch: " << CryptoNote::CRYPTONOTE_NAME << "d --" << arg_print_genesis_tx.name;
+  return 1;
+}
+
+CryptoNote::Currency currency = currencyBuilder.currency();
+CryptoNote::core ccore(currency, nullptr, logManager);
+
+CryptoNote::Checkpoints checkpoints(logManager);
+for (const auto& cp : CryptoNote::CHECKPOINTS) {
+  checkpoints.add_checkpoint(cp.height, cp.blockId);
+}
+
+if (!testnet_mode) {
+  ccore.set_checkpoints(std::move(checkpoints));
+}
+
 
 void t_daemon::init_options(boost::program_options::options_description & option_spec)
 {
