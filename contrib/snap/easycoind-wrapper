@@ -2,7 +2,7 @@
 
 if [ ! -d "$SNAP_USER_DATA/etc" ]; then
   mkdir $SNAP_USER_DATA/etc/
-  cp -R $SNAP/etc/monerod.conf $SNAP_USER_DATA/etc/easycoind.conf
+  cp -R $SNAP/etc/easycoin.conf $SNAP_USER_DATA/etc/easycoind.conf
 fi
 
 exec "$SNAP/bin/easycoind" "$@"

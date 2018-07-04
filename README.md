@@ -22,7 +22,7 @@ Portions Copyright (c) 2012-2013 The Cryptonote developers.
 
 ## Build
 
-### IMPORTANT 
+### IMPORTANT
 
 These builds are of the master branch, which is used for active development and can be either unstable or incompatible with release software. Please compile release branches.
 
@@ -97,7 +97,7 @@ If you want to help out, see [CONTRIBUTING](CONTRIBUTING.md) for a set of guidel
 ## Scheduled software upgrades
 
 Monero uses a fixed-schedule software upgrade (hard fork) mechanism to implement new features. This means that users of Monero (end users and service providers) should run current versions and upgrade their software on a regular schedule. Software upgrades occur during the months of April and October. The required software for these upgrades will be available prior to the scheduled date. Please check the repository prior to this date for the proper Monero software version. Below is the historical schedule and the projected schedule for the next upgrade.
-Dates are provided in the format YYYY-MM-DD. 
+Dates are provided in the format YYYY-MM-DD.
 
 
 | Software upgrade block height | Date       | Fork version | Minimum Monero version | Recommended Monero version | Details                                                                            |  
@@ -114,7 +114,7 @@ X's indicate that these details have not been determined as of commit date.
 
 ## Release staging schedule and protocol
 
-Approximately three months prior to a scheduled software upgrade, a branch from Master will be created with the new release version tag. Pull requests that address bugs should then be made to both Master and the new release branch. Pull requests that require extensive review and testing (generally, optimizations and new features) should *not* be made to the release branch. 
+Approximately three months prior to a scheduled software upgrade, a branch from Master will be created with the new release version tag. Pull requests that address bugs should then be made to both Master and the new release branch. Pull requests that require extensive review and testing (generally, optimizations and new features) should *not* be made to the release branch.
 
 ## Compiling Monero from source
 
@@ -188,18 +188,18 @@ invokes cmake commands as needed.
 
     *Note*: If cmake can not find zmq.hpp file on OS X, installing `zmq.hpp` from
     https://github.com/zeromq/cppzmq to `/usr/local/include` should fix that error.
-    
+
     *Note*: The instructions above will compile the most stable release of the
     Monero software. If you would like to use and test the most recent software,
     use ```git checkout master```. The master branch may contain updates that are
-    both unstable and incompatible with release software, though testing is always 
-    encouraged. 
+    both unstable and incompatible with release software, though testing is always
+    encouraged.
 
 * The resulting executables can be found in `build/release/bin`
 
 * Add `PATH="$PATH:$HOME/monero/build/release/bin"` to `.profile`
 
-* Run Monero with `monerod --detach`
+* Run Easycoin with `easycoind --detach`
 
 * **Optional**: build and run the test suite to verify the binaries:
 
@@ -223,14 +223,14 @@ Dependencies need to be built with -fPIC. Static libraries usually aren't, so yo
 
 #### On the Raspberry Pi
 
-Tested on a Raspberry Pi Zero with a clean install of minimal Raspbian Stretch (2017-09-07 or later) from https://www.raspberrypi.org/downloads/raspbian/. If you are using Raspian Jessie, [please see note in the following section](#note-for-raspbian-jessie-users). 
+Tested on a Raspberry Pi Zero with a clean install of minimal Raspbian Stretch (2017-09-07 or later) from https://www.raspberrypi.org/downloads/raspbian/. If you are using Raspian Jessie, [please see note in the following section](#note-for-raspbian-jessie-users).
 
 * `apt-get update && apt-get upgrade` to install all of the latest software
 
 * Install the dependencies for Monero from the 'Debian' column in the table above.
 
 * Increase the system swap size:
-```	
+```
 	sudo /etc/init.d/dphys-swapfile stop  
 	sudo nano /etc/dphys-swapfile  
 	CONF_SWAPSIZE=1024  
@@ -262,7 +262,7 @@ If you are using the older Raspbian Jessie image, compiling Monero is a bit more
 
 * As before, `apt-get update && apt-get upgrade` to install all of the latest software, and increase the system swap size
 
-```	
+```
 	sudo /etc/init.d/dphys-swapfile stop  
 	sudo nano /etc/dphys-swapfile  
 	CONF_SWAPSIZE=1024  
@@ -318,7 +318,7 @@ application.
         pacman -S mingw-w64-x86_64-toolchain make mingw-w64-x86_64-cmake mingw-w64-x86_64-boost mingw-w64-x86_64-openssl mingw-w64-x86_64-zeromq mingw-w64-x86_64-libsodium
 
     To build for 32-bit Windows:
- 
+
         pacman -S mingw-w64-i686-toolchain make mingw-w64-i686-cmake mingw-w64-i686-boost mingw-w64-i686-openssl mingw-w64-i686-zeromq mingw-w64-i686-libsodium
 
 * Open the MingW shell via `MinGW-w64-Win64 Shell` shortcut on 64-bit Windows
@@ -334,11 +334,11 @@ application.
 **Building**
 
 * Change to the cloned directory, run:
-	
+
         cd monero
 
 * If you would like a specific [version/tag](https://github.com/monero-project/monero/tags), do a git checkout for that version. eg. 'v0.12.1.0'. If you dont care about the version and just want binaries from master, skip this step:
-	
+
         git checkout v0.12.1.0
 
 * If you are on a 64-bit system, run:
@@ -354,7 +354,7 @@ application.
 * **Optional**: to build Windows binaries suitable for debugging on a 64-bit system, run:
 
         make debug-static-win64
-	
+
 * **Optional**: to build Windows binaries suitable for debugging on a 32-bit system, run:
 
         make debug-static-win32
@@ -403,7 +403,7 @@ mkdir ~/boost
 cd ~/boost
 
 # Fetch boost source
-ftp -o boost_1_64_0.tar.bz2 https://netcologne.dl.sourceforge.net/project/boost/boost/1.64.0/boost_1_64_0.tar.bz2 
+ftp -o boost_1_64_0.tar.bz2 https://netcologne.dl.sourceforge.net/project/boost/boost/1.64.0/boost_1_64_0.tar.bz2
 
 # MUST output: (SHA256) boost_1_64_0.tar.bz2: OK
 echo "7bcc5caace97baa948931d712ea5f37038dbb1c5d89b43ad4def4ed7cb683332 boost_1_64_0.tar.bz2" | sha256 -c
@@ -529,13 +529,13 @@ Installing a snap is very quick. Snaps are secure. They are isolated with all of
 
 Packaging for your favorite distribution would be a welcome contribution!
 
-## Running monerod
+## Running easycoind
 
 The build places the binary in `bin/` sub-directory within the build directory
 from which cmake was invoked (repository root by default). To run in
 foreground:
 
-    ./bin/monerod
+    ./bin/easycoind
 
 To list all available options, run `./bin/monerod --help`.  Options can be
 specified either on the command line or in a configuration file passed by the
@@ -548,14 +548,14 @@ To run in background:
     ./bin/monerod --log-file monerod.log --detach
 
 To run as a systemd service, copy
-[monerod.service](utils/systemd/monerod.service) to `/etc/systemd/system/` and
-[monerod.conf](utils/conf/monerod.conf) to `/etc/`. The [example
-service](utils/systemd/monerod.service) assumes that the user `monero` exists
+[easycoind.service](utils/systemd/monerod.service) to `/etc/systemd/system/` and
+[easycoin.conf](utils/conf/easycoin.conf) to `/etc/`. The [example
+service](utils/systemd/monerod.service) assumes that the user `easycoin` exists
 and its home is the data directory specified in the [example
-config](utils/conf/monerod.conf).
+config](utils/conf/easycoin.conf).
 
 If you're on Mac, you may need to add the `--max-concurrency 1` option to
-monero-wallet-cli, and possibly monerod, if you get crashes refreshing.
+easycoin-wallet-cli, and possibly monerod, if you get crashes refreshing.
 
 ## Internationalization
 
@@ -568,7 +568,7 @@ setting the following configuration parameters and environment variables:
 
 * `--p2p-bind-ip 127.0.0.1` on the command line or `p2p-bind-ip=127.0.0.1` in
   monerod.conf to disable listening for connections on external interfaces.
-* `--no-igd` on the command line or `no-igd=1` in monerod.conf to disable IGD
+* `--no-igd` on the command line or `no-igd=1` in easycoin.conf to disable IGD
   (UPnP port forwarding negotiation), which is pointless with Tor.
 * `DNS_PUBLIC=tcp` or `DNS_PUBLIC=tcp://x.x.x.x` where x.x.x.x is the IP of the
   desired DNS server, for DNS requests to go over TCP, so that they are routed
@@ -596,7 +596,7 @@ to add a rule to allow this connection too, in addition to telling torsocks to
 allow inbound connections. Full example:
 
     sudo iptables -I OUTPUT 2 -p tcp -d 127.0.0.1 -m tcp --dport 18081 -j ACCEPT
-    DNS_PUBLIC=tcp torsocks ./monerod --p2p-bind-ip 127.0.0.1 --no-igd --rpc-bind-ip 127.0.0.1 \
+    DNS_PUBLIC=tcp torsocks ./easycoind --p2p-bind-ip 127.0.0.1 --no-igd --rpc-bind-ip 127.0.0.1 \
         --data-dir /home/amnesia/Persistent/your/directory/to/the/blockchain
 
 ## Debugging
@@ -614,7 +614,7 @@ Run the build.
 Once it stalls, enter the following command:
 
 ```
-gdb /path/to/monerod `pidof monerod` 
+gdb /path/to/monerod `pidof monerod`
 ```
 
 Type `thread apply all bt` within gdb in order to obtain the stack trace
@@ -641,13 +641,13 @@ Type `gdb /path/to/monerod`
 
 Pass command-line options with `--args` followed by the relevant arguments
 
-Type `run` to run monerod
+Type `run` to run easycoind
 
 ### Analysing memory corruption
 
 We use the tool `valgrind` for this.
 
-Run with `valgrind /path/to/monerod`. It will be slow.
+Run with `valgrind /path/to/easycoind`. It will be slow.
 
 ### LMDB
 

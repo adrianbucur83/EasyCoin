@@ -1,34 +1,21 @@
 [Unit]
-Description=Monero Full Node
+Description=Easycoin Full Node
 After=network.target
 
 [Service]
-User=monero
-Group=monero
+User=easycoin
+Group=easycoin
 WorkingDirectory=~
-RuntimeDirectory=monero
+RuntimeDirectory=easycoin
 
 # Clearnet config
 #
 Type=forking
-PIDFile=/run/monero/monerod.pid
-ExecStart=/usr/bin/monerod --config-file /etc/monerod.conf \
-    --detach --pidfile /run/monero/monerod.pid
+PIDFile=/run/easycoin/easycoin.pid
+ExecStart=/usr/bin/easycoind --config-file /etc/easycoin.conf \
+    --detach --pidfile /run/monero/easycoin.pid
 
-# Tor config
-#
-## We have to use simple, not forking, because we cannot pass --detach
-## because stderr/stdout is not available when detached, but torsocks
-## attempts to write to it, and fails with 'invalid argument', causing
-## monerod to fail.
-#Type=simple
-#Environment=DNS_PUBLIC=tcp
-## The following is needed only when accessing wallet from a different
-## host in the LAN, VPN, etc, the RPC must bind to 0.0.0.0, but
-## by default torsocks only allows binding to localhost.
-#Environment=TORSOCKS_ALLOW_INBOUND=1
-#ExecStart=/usr/bin/torsocks /usr/bin/monerod --config-file /etc/monerod.conf \
-#    --non-interactive
+
 
 Restart=always
 
