@@ -51,8 +51,6 @@
 
 
 using namespace epee;
-using namespace Logging;
-using namespace CryptoNote;
 
 #include <functional>
 
@@ -107,12 +105,14 @@ void print_genesis_tx_hex() {
 
   return;
 }
+
 CryptoNote::CurrencyBuilder currencyBuilder(logManager);
 currencyBuilder.testnet(testnet_mode);
 
 try {
   currencyBuilder.currency();
-} catch (std::exception&) {
+} catch (std::exception&)
+{
   std::cout << "GENESIS_COINBASE_TX_HEX constant has an incorrect value. Please launch: " << CryptoNote::CRYPTONOTE_NAME << "d --" << arg_print_genesis_tx.name;
   return 1;
 }
