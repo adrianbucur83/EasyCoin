@@ -107,6 +107,11 @@ const command_line::arg_descriptor<bool> arg_print_genesis_tx = {
       , "127.0.0.1"
   };
 
+const command_line::arg_descriptor<bool> arg_print_genesis_tx = {
+  "print-genesis-tx", "Prints genesis' block tx hex to insert it to config and exits"
+ };
+
+
   const command_line::arg_descriptor<std::string, false, true, 2> arg_zmq_rpc_bind_port = {
     "zmq-rpc-bind-port"
   , "Port for ZMQ RPC server to listen on"

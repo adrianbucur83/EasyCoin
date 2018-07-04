@@ -46,8 +46,13 @@
 #include "daemon/command_server.h"
 #include "daemon/command_line_args.h"
 #include "version.h"
+#include "Logging/ConsoleLogger.h"
+#include <Logging/LoggerManager.h>
+
 
 using namespace epee;
+using namespace Logging;
+using namespace CryptoNote;
 
 #include <functional>
 
@@ -91,7 +96,7 @@ public:
   }
 };
 
-/*void print_genesis_tx_hex() {
+void print_genesis_tx_hex() {
   Logging::ConsoleLogger logger;
   CryptoNote::Transaction tx = CryptoNote::CurrencyBuilder(logger).generateGenesisTransaction();
   CryptoNote::BinaryArray txb = CryptoNote::toBinaryArray(tx);
@@ -124,7 +129,7 @@ if (!testnet_mode) {
   ccore.set_checkpoints(std::move(checkpoints));
 }
 
-*/
+
 
 void t_daemon::init_options(boost::program_options::options_description & option_spec)
 {
